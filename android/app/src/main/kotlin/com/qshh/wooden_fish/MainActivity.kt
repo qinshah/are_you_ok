@@ -1,4 +1,4 @@
-package qshh.wooden_fish
+package com.qshh.wooden_fish
 
 import io.flutter.embedding.android.FlutterActivity
 

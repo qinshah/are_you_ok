@@ -11,11 +11,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-  audioplayers:
-    git:
-      url: https://gitcode.com/openharmony-sig/flutter_audioplayers.git
-      path: packages/audioplayers
+  audioplayers: ^6.5.0
+  # audioplayers:
+  #   git:
+  #     url: https://gitcode.com/openharmony-sig/flutter_audioplayers.git
+  #     path: packages/audioplayers
 
 dev_dependencies:
   flutter_lints: ^5.0.0
