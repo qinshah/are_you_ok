@@ -11,10 +11,10 @@ class IconSelectDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('木鱼图标'),
+      title: const Text('图标'),
       content: Wrap(
-        spacing: 12,
-        runSpacing: 12,
+        spacing: 8,
+        runSpacing: 8,
         children: List.generate(
           SvgIcon.iconSvgs.length,
           (index) {
@@ -27,6 +27,7 @@ class IconSelectDialog extends StatelessWidget {
               child: Container(
                 width: 60,
                 height: 60,
+                padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
                   color: iconSvg == SvgIcon().current
                       ? Colors.green[200]

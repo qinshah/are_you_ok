@@ -14,15 +14,40 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
   var _source = AssetSource(Sound().current.substring('assets/'.length));
   var _iconSvg = SvgIcon().current;
+  late AnimationController _controller;
 
-  _play() {
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 100),
+      value: 1.0,
+      vsync: this,
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  _onTapDown(TapDownDetails details) {
+    _controller.reverse();
     var player = AudioPlayer();
     player.setPlayerMode(PlayerMode.lowLatency);
-    player.onPlayerComplete.listen((_) => player.dispose());
+    player.onPlayerComplete.listen((_) {
+      player.release();
+      player.dispose();
+    });
     player.play(_source);
+  }
+
+  _onTapUp(TapUpDetails details) {
+    _controller.forward();
   }
 
   void _changeIcon() async {
@@ -71,8 +96,16 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Center(
         child: GestureDetector(
-          onTap: _play,
-          child: SvgPicture.string(_iconSvg, width: 200),
+          onTapDown: _onTapDown,
+          onTapUp: _onTapUp,
+          onTapCancel: () => _controller.forward(),
+          child: AnimatedBuilder(
+            animation: _controller,
+            builder: (context, child) => Transform.scale(
+              scale: 0.8 + (_controller.value * 0.2),
+              child: SvgPicture.string(_iconSvg, width: 200),
+            ),
+          ),
         ),
       ),
     );

@@ -10,7 +10,7 @@ class SoundSelectDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('木鱼音效'),
+      title: const Text('音效'),
       content: SizedBox(
         width: double.maxFinite,
         height: 300, // 设置一个固定的高度
