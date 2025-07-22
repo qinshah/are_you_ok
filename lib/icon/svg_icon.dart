@@ -1,31 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+class SvgIcon {
+  SvgIcon._();
 
-class IconManage {
-  IconManage._();
+  static SvgIcon instance = SvgIcon._();
 
-  static int _index = 0;
+  factory SvgIcon() => instance;
 
-  static SvgPicture currentIcon({
-    double size = 200,
-    Color? color,
-  }) {
-    return SvgPicture.string(
-      width: size,
-      height: size,
-      color: color,
-      iconStrings[_index],
-    );
-  }
+  String current = iconSvgs.first;
 
-  static setIcon(int index) {
-    if (index < 0 || index >= iconStrings.length) {
-      throw ArgumentError('Index out of range');
-    }
-    _index = index;
-  }
-
-  static final iconStrings = [
+  static const iconSvgs = [
     '''
 <svg t="1753072197745" class="icon" viewBox="0 0 1024 1024" version="1.1"
     xmlns="http://www.w3.org/2000/svg" p-id="5862" width="200" height="200">

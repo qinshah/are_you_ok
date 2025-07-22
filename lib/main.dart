@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'home/home_page.dart';
+import 'sound/sound.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Sound().init();
   runApp(const MyApp());
 }
 

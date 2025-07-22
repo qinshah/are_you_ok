@@ -2,8 +2,10 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../icon/icon_manage.dart';
-import '../icon/icons_view.dart';
+import '../icon/svg_icon.dart';
+import '../icon/icon_select_dialog.dart';
+import '../sound/sound.dart';
+import '../sound/sound_select_dialog.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,8 +15,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _source = AssetSource('audio/1.mp3');
-  var _icon = IconManage.currentIcon();
+  var _source = AssetSource(Sound().current.substring('assets/'.length));
+  var _iconSvg = SvgIcon().current;
 
   _play() {
     var player = AudioPlayer();
@@ -26,11 +28,22 @@ class _HomePageState extends State<HomePage> {
   void _changeIcon() async {
     await showAdaptiveDialog(
       context: context,
-      builder: (context) => IconsView(),
+      builder: (context) => IconSelectDialog(),
       barrierDismissible: true,
     );
     setState(() {
-      _icon = IconManage.currentIcon();
+      _iconSvg = SvgIcon().current;
+    });
+  }
+
+  void _changeSound() async {
+    await showAdaptiveDialog(
+      context: context,
+      builder: (context) => SoundSelectDialog(),
+      barrierDismissible: true,
+    );
+    setState(() {
+      _source = AssetSource(Sound().current.substring('assets/'.length));
     });
   }
 
@@ -43,11 +56,15 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
             onPressed: _changeIcon,
-            icon: IconManage.currentIcon(size: 24),
+            icon: SvgPicture.string(
+              _iconSvg,
+              width: 30,
+            ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: _changeSound,
             icon: SvgPicture.string(
+                width: 32,
                 '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-music-icon lucide-music"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>'),
           ),
         ],
@@ -55,7 +72,7 @@ class _HomePageState extends State<HomePage> {
       body: Center(
         child: GestureDetector(
           onTap: _play,
-          child: _icon,
+          child: SvgPicture.string(_iconSvg, width: 200),
         ),
       ),
     );
