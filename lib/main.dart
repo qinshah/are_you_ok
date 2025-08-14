@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'home/home_page.dart';
-import 'sound/sound.dart';
+import 'view/sound/sound.dart';
+import 'view/welcome/welcome_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.white,
         ),
       ),
-      home: const HomePage(),
+      home: const WelcomePage(),
     );
   }
 }
