@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.white,
         ),
         scaffoldBackgroundColor: Colors.white,
-        dialogTheme: const DialogTheme(
+        dialogTheme: const DialogThemeData(
           backgroundColor: Colors.white,
         ),
       ),

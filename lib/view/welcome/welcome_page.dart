@@ -64,7 +64,7 @@ class _WelcomePageState extends State<WelcomePage>
     });
   }
 
-  _onTapDown(TapDownDetails details) {
+  void _onTapDown(TapDownDetails details) {
     _controller.reverse();
     var player = AudioPlayer();
     player.setPlayerMode(PlayerMode.lowLatency);
@@ -75,7 +75,7 @@ class _WelcomePageState extends State<WelcomePage>
     player.play(_source);
   }
 
-  _onTapUp(TapUpDetails details) {
+  void _onTapUp(TapUpDetails details) {
     _controller.forward();
   }
 
