@@ -5,6 +5,8 @@ import '../../api/nav.dart';
 import 'package:flutter/material.dart';
 
 import '../do_something/do_something_page.dart';
+import '../record/record_page.dart';
+import '../me/me_page.dart';
 import '../icon/icon_select_dialog.dart';
 import '../icon/svg_icon.dart';
 import '../sound/sound.dart';
@@ -114,13 +116,21 @@ class _WelcomePageState extends State<WelcomePage>
                   runSpacing: _spacing,
                   alignment: WrapAlignment.spaceAround,
                   children: [
-                    _circleButton('记录一下', Colors.blue, null),
+                    _circleButton(
+                      '记录一下',
+                      Colors.blue,
+                      () => context.push(RecordPage()),
+                    ),
                     _circleButton(
                       '做点什么',
                       Colors.green,
                       () => context.push(DoSomethingPage()),
                     ),
-                    _circleButton('我', Colors.teal, null),
+                    _circleButton(
+                      '我',
+                      Colors.teal,
+                      () => context.push(MePage()),
+                    ),
                   ],
                 ),
               ),
