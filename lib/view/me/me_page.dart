@@ -17,7 +17,9 @@ class _MePageState extends State<MePage> {
         title: const Text('我'),
         actions: [
           TextButton(
-              onPressed: RecordStorage().clearRecords, child: Text('清除记录')),
+            onPressed: () => setState(() => RecordStorage().clearRecords()),
+            child: Text('清除记录'),
+          ),
         ],
       ),
       body: FutureBuilder<List<Record>>(
